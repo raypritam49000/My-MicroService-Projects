@@ -1,0 +1,37 @@
+server:
+  port: 9996
+
+management:
+  security:
+    enabled: false
+
+spring:
+  application:
+    name: user-service
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: false
+        fail-fast: true
+      discovery:
+        instanceId: ${spring.application.name}:${server.port}
+        healthCheckInterval: 15s
+        healthCheckPath: /actuator/health
+        preferIpAddress: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user-service-db?createDatabaseIfNotExist=true
+    username: root
+    password: 0003pray
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        hbm2ddl.auto: update
+        show_sql: true
+        format_sql: true
+

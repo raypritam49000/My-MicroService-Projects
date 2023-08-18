@@ -1,0 +1,30 @@
+server:
+  port: 9998
+
+spring:
+  application:
+    name: course-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/course-service-db?createDatabaseIfNotExist=true
+    password: 0003pray
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        hbm2ddl.auto: update
+        show_sql: true
+        format_sql: true
+        dialect.storage_engine: innodb
+
+eureka:
+  instance:
+    hostname: course-service
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+

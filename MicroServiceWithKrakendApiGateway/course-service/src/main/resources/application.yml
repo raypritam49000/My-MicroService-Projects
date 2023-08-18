@@ -1,0 +1,39 @@
+server:
+  port: 9998
+
+management:
+  security:
+    enabled: false
+
+spring:
+  application:
+    name: course-service
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: false
+        fail-fast: true
+      discovery:
+        instanceId: ${spring.application.name}:${server.port}
+        healthCheckInterval: 15s
+        healthCheckPath: /actuator/health
+        preferIpAddress: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/course-service-db?createDatabaseIfNotExist=true
+    password: 0003pray
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        hbm2ddl.auto: update
+        show_sql: true
+        format_sql: true
+        dialect.storage_engine: innodb
+
+

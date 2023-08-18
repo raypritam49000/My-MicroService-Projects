@@ -1,0 +1,593 @@
+{
+  "version": 3,
+  "$schema": "http://www.krakend.io/schema/krakend.json",
+  "port": 9999,
+  "timeout": "3000ms",
+  "cache_ttl": "3600s",
+  "output_encoding": "json",
+  "extra_config": {
+    "router": {
+      "return_error_msg": true
+    },
+    "security/cors": {
+      "allow_credentials": true,
+      "allow_headers": [
+        true
+      ],
+      "allow_methods": [
+        "DELETE",
+        "GET",
+        "POST",
+        "PUT"
+      ],
+      "allow_origins": [
+        "*"
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/auth/api/login",
+      "output_encoding": "json",
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/auth/api/login",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/auth/api/register",
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/auth/api/register",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/getUsers",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/users/getUsers",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/by-username/{username}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/users/by-username/{username}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/by-email/{email}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/users/by-email/{email}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/updateUserById/{userId}",
+      "method": "PUT",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/users/updateUserById/{userId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/by-Id/{userId}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/users/by-Id/{userId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/users/deleteUser/{userId}",
+      "method": "DELETE",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/users/deleteUser/{userId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9996"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/web-client/all",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/web-client/all",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/all",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/all",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/byName/{name}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/byName/{name}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/web-client/findById/{studentId}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/web-client/findById/{studentId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/findById/{studentId}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/findById/{studentId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/id/{studentId}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/id/{studentId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/{studentId}",
+      "method": "PUT",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/{studentId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students/{studentId}",
+      "method": "DELETE",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students/{studentId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/students",
+      "method": "POST",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/students",
+          "sd": "static",
+          "host": [
+            "http://localhost:9997"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/courses",
+      "method": "POST",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/courses",
+          "sd": "static",
+          "host": [
+            "http://localhost:9998"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/courses",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/courses",
+          "sd": "static",
+          "host": [
+            "http://localhost:9998"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/courses/getAllCourse/{studentId}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/courses/getAllCourse/{studentId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9998"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/courses/{courseId}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/courses/{courseId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9998"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/courses/{courseId}",
+      "method": "PUT",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/courses/{courseId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9998"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/courses/{courseId}",
+      "method": "DELETE",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/courses/{courseId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9998"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": true,
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/courses/getCourse/{studentId}",
+      "method": "GET",
+      "input_headers": [
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/courses/getCourse/{studentId}",
+          "sd": "static",
+          "host": [
+            "http://localhost:9998"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "is_collection": false,
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}

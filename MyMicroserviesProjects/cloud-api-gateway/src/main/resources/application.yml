@@ -1,0 +1,42 @@
+server:
+  port: 8888
+
+management:
+  security:
+    enabled: false
+
+spring:
+  application:
+    name: cloud-api-gateway-service
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: false
+        fail-fast: true
+      discovery:
+        instanceId: ${spring.application.name}:${server.port}
+        healthCheckInterval: 15s
+        healthCheckPath: /actuator/health
+        preferIpAddress: true
+
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/auth/api/**,/users/**
+        - id: student-service
+          uri: lb://student-service
+          predicates:
+            - Path=/students/**
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=/courses/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE

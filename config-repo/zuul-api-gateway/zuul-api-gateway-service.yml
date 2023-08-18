@@ -1,0 +1,54 @@
+server:
+  port: 9999
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+zuul:
+  sensitive-headers:
+    - Cookie, Set-Cookie, Authorization
+  routes:
+    user-service:
+      path: /user-service/**
+      service-id: user-service
+      strip-prefix: true
+    student-service:
+      path: /student-service/**
+      service-id: student-service
+      strip-prefix: true
+    course-service:
+      path: /course-service/**
+      service-id: course-service
+      strip-prefix: true
+
+# http://localhost:9999/student-service/students
+# http://localhost:9999/course-service/courses
+# http://localhost:9999/user-service/auth/api/login
+# http://localhost:9999/user-service/auth/api/register
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          netflix: trace
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3600000
+
+ribbon:
+  ReadTimeout: 3600000
+
+

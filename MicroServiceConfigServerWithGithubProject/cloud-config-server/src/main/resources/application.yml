@@ -1,0 +1,20 @@
+server:
+  port: 9296
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/raypritam49000/config-repo
+          search-paths: cloud-api-gateway, course, student, user, eureka, zuul-api-gateway
+          clone-on-start: true
+
+
+
+
+
+
+

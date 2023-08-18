@@ -1,0 +1,24 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: product-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/product-service-db?createDatabaseIfNotExist=true
+    password: 0003pray
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        hbm2ddl.auto: update
+        show_sql: true
+        format_sql: true
+        dialect.storage_engine: innodb
+
+logging:
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
+
